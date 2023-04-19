@@ -45,7 +45,7 @@ export default function Home() {
           />
         ))}
       </div>
-      <h2 className='mt-16 text-2xl font-bold text-trueGray-800'>What API did I used? And why did I used this?</h2>
+      <h2 className='mt-16 text-2xl font-bold text-trueGray-800'>What API I used? And why did I use this?</h2>
       <p className='mt-5 mb-20 text-l text-trueGray-800'>To develop this project, first I developed an API, that could fetch data of my projects. Then I displayed this data in my application. I did this because I wanted to make one source of truth for my online portfolios and website and have to change it once at only one place.</p>
     </main>
   )
