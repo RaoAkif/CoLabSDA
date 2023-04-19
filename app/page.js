@@ -1,6 +1,21 @@
+"use client"
+
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import Card from './components/Card';
 
 export default function Home() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('https://raoakif-portfolio-api.netlify.app/api/projects');
+      const data = await res.json();
+      setProjects(data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <main className="">
       <Image
@@ -14,6 +29,18 @@ export default function Home() {
       <p className='mt-10 w-3/4 text-xl text-justify m-auto'>
       I am a highly adaptable professional with expertise in multiple languages, frameworks, and technologies. I have experience in front-end development using JavaScript, React, Next, and Redux, as well as back-end development using Ruby on Rails and Node.js. I am also proficient in using various databases, tools, and methods such as Git, GitHub, Heroku, Netlify, Vercel, and mobile/responsive development. In addition, I excel in remote pair-programming, teamwork, and mentoring. Visit www.raoakif.github.io or email me at akifrao@gmail.com to learn more about my work.
       </p>
+      <div className="m-20 grid grid-cols-2 gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project) => (
+          <Card
+            key={project.id}
+            title={project.title}
+            image={project.image}
+            tags={project.tags}
+            linkLive={project.linkLive}
+            linkSource={project.linkSource}
+          />
+        ))}
+      </div>
     </main>
   )
 }
